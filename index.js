@@ -38,22 +38,7 @@ async function run() {
       res.send(result);
     })
 
-    
-    const toy = client.db('toyland').collection('toys');
-    
-    app.get('/toydetails/:id', async (req, res) => {
-      const { id } = req.params;
-      try {
-        const cursor = toy.find({ _id: ObjectId(id) });
-        const result = await cursor.toArray();
-        res.send(result);
-      } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-      }
-    });
-       
-
+  
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
